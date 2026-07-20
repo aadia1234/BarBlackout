@@ -1,0 +1,41 @@
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# ---- Xcode: build output ----
+build/
+DerivedData/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# ---- Xcode: per-user state ----
+# Window layout, open tabs, and breakpoints. These hold absolute paths, so
+# committing them causes "failed to read file attributes" errors for anyone
+# whose checkout lives at a different path — including you, after moving the
+# project.
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Keep shared schemes (xcshareddata/) — those are meant to be committed.
+
+# ---- Swift Package Manager ----
+.build/
+.swiftpm/
+Package.resolved
+
+# ---- Dependency managers (unused here, listed for future use) ----
+Pods/
+Carthage/Build/
+
+# ---- Local tooling ----
+.claude/settings.local.json

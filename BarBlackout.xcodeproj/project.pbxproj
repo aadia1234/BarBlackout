@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		084E33942FC573B6005F4894 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E33932FC573B6005F4894 /* SettingsView.swift */; };
+		AA0001000000000000000001 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000001 /* main.swift */; };
+		AA0001000000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000002 /* AppDelegate.swift */; };
+		AA0001000000000000000003 /* MenuBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000003 /* MenuBarManager.swift */; };
+		AA0001000000000000000004 /* VideoDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000004 /* VideoDetector.swift */; };
+		AA0001000000000000000005 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000005 /* PopoverView.swift */; };
+		AA0001000000000000000006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0002000000000000000006 /* Assets.xcassets */; };
+		AA0001000000000000000008 /* BarBlackoutEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000200000000000000000A /* BarBlackoutEntry.swift */; };
+		AA0001000000000000000009 /* MenuBarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000200000000000000000B /* MenuBarOverlay.swift */; };
+		AA000100000000000000000A /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000200000000000000000C /* DurationView.swift */; };
+		AA00010000000000000000A1 /* CustomDurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00020000000000000000C1 /* CustomDurationView.swift */; };
+		AA000100000000000000000B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000200000000000000000F /* AboutView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		084E33932FC573B6005F4894 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000000 /* BarBlackout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarBlackout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0002000000000000000001 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AA0002000000000000000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA0002000000000000000003 /* MenuBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarManager.swift; sourceTree = "<group>"; };
+		AA0002000000000000000004 /* VideoDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetector.swift; sourceTree = "<group>"; };
+		AA0002000000000000000005 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		AA0002000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA0002000000000000000007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA0002000000000000000008 /* BarBlackout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BarBlackout.entitlements; sourceTree = "<group>"; };
+		AA000200000000000000000A /* BarBlackoutEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarBlackoutEntry.swift; sourceTree = "<group>"; };
+		AA000200000000000000000B /* MenuBarOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarOverlay.swift; sourceTree = "<group>"; };
+		AA000200000000000000000C /* DurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationView.swift; sourceTree = "<group>"; };
+		AA00020000000000000000C1 /* CustomDurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDurationView.swift; sourceTree = "<group>"; };
+		AA000200000000000000000F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA0003000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0004000000000000000000 = {
+			isa = PBXGroup;
+			children = (
+				AA0004000000000000000001 /* BarBlackout */,
+				AA0004000000000000000002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000001 /* BarBlackout */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000001 /* main.swift */,
+				AA0002000000000000000002 /* AppDelegate.swift */,
+				AA0002000000000000000003 /* MenuBarManager.swift */,
+				AA0002000000000000000004 /* VideoDetector.swift */,
+				AA0002000000000000000005 /* PopoverView.swift */,
+				AA0002000000000000000006 /* Assets.xcassets */,
+				AA0002000000000000000007 /* Info.plist */,
+				AA0002000000000000000008 /* BarBlackout.entitlements */,
+				AA000200000000000000000A /* BarBlackoutEntry.swift */,
+				AA000200000000000000000B /* MenuBarOverlay.swift */,
+				AA000200000000000000000C /* DurationView.swift */,
+				AA00020000000000000000C1 /* CustomDurationView.swift */,
+				084E33932FC573B6005F4894 /* SettingsView.swift */,
+				AA000200000000000000000F /* AboutView.swift */,
+			);
+			path = BarBlackout;
+			sourceTree = "<group>";
+		};
+		AA0004000000000000000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002000000000000000000 /* BarBlackout.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0005000000000000000001 /* BarBlackout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0006000000000000000006 /* Build configuration list for PBXNativeTarget "BarBlackout" */;
+			buildPhases = (
+				AA0007000000000000000001 /* Sources */,
+				AA0003000000000000000001 /* Frameworks */,
+				AA0008000000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BarBlackout;
+			productName = BarBlackout;
+			productReference = AA0002000000000000000000 /* BarBlackout.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0009000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					AA0005000000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0006000000000000000001 /* Build configuration list for PBXProject "BarBlackout" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0004000000000000000000;
+			productRefGroup = AA0004000000000000000002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0005000000000000000001 /* BarBlackout */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0008000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0001000000000000000006 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0007000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0001000000000000000001 /* main.swift in Sources */,
+				AA0001000000000000000002 /* AppDelegate.swift in Sources */,
+				AA0001000000000000000003 /* MenuBarManager.swift in Sources */,
+				AA0001000000000000000004 /* VideoDetector.swift in Sources */,
+				AA0001000000000000000005 /* PopoverView.swift in Sources */,
+				084E33942FC573B6005F4894 /* SettingsView.swift in Sources */,
+				AA0001000000000000000008 /* BarBlackoutEntry.swift in Sources */,
+				AA0001000000000000000009 /* MenuBarOverlay.swift in Sources */,
+				AA000100000000000000000A /* DurationView.swift in Sources */,
+				AA00010000000000000000A1 /* CustomDurationView.swift in Sources */,
+				AA000100000000000000000B /* AboutView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0006000000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 95P6AMSZ3D;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA0006000000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 95P6AMSZ3D;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AA0006000000000000000004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarBlackout/BarBlackout.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BarBlackout/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					DeveloperToolsSupport,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aadi.BarBlackout;
+				PRODUCT_NAME = BarBlackout;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA0006000000000000000005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarBlackout/BarBlackout.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BarBlackout/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aadi.BarBlackout;
+				PRODUCT_NAME = BarBlackout;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0006000000000000000001 /* Build configuration list for PBXProject "BarBlackout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006000000000000000002 /* Debug */,
+				AA0006000000000000000003 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0006000000000000000006 /* Build configuration list for PBXNativeTarget "BarBlackout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006000000000000000004 /* Debug */,
+				AA0006000000000000000005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA0009000000000000000001 /* Project object */;
+}
