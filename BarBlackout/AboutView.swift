@@ -66,8 +66,8 @@ struct AboutView: View {
     // ── Customise these to match your app ────────────────────────────────────
     private let description = "Blackout the bar. It comes back. Hide your menu bar on a timer, and automatically while you watch video."
     private let supportURL  = URL(string: "https://yoursite.com/support")!
-    private let websiteURL  = URL(string: "https://yoursite.com")!
-    private let copyright   = "Copyright © 2026 Your Name. All rights reserved."
+    private let websiteURL  = URL(string: "https://github.com/aadia1234/BarBlackout")!
+    private let copyright   = "Copyright © 2026 Aadi Anand. All rights reserved."
     // ─────────────────────────────────────────────────────────────────────────
 
     private var appName: String {
@@ -105,7 +105,6 @@ struct AboutView: View {
                             .padding(.top, 12)
 
                         HStack(spacing: 10) {
-                            ActionButton("Support") { NSWorkspace.shared.open(supportURL) }
                             ActionButton("Website") { NSWorkspace.shared.open(websiteURL) }
                         }
                         .padding(.top, 16)

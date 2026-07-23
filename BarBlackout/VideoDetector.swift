@@ -29,61 +29,101 @@ final class VideoDetector {
     /// another app, or pausing (which releases the assertion), both turn this
     /// false without needing to know anything about the player.
     func isVideoPlaying() -> Bool {
-        guard frontAppHoldsDisplayAssertion() else { return false }
-        return frontAppIsOutputtingAudio()
+        let pids = frontAppPIDs()
+        guard !pids.isEmpty else { return false }
+        guard holdsDisplayAssertion(pids) else { return false }
+        return isOutputtingAudio(pids)
+    }
+
+    // MARK: - Process tree
+
+    // Browsers don't play media in their main process. Chrome uses renderer
+    // helpers (children of the main process); Safari uses WebKit WebContent
+    // processes, which are NOT children — they're reparented and link back only
+    // via "responsible pid". Measured here: audio from a Chrome video is
+    // attributed to pid 2151 (Google Chrome Helper), whose parent is 1819
+    // (Google Chrome). Matching the frontmost PID alone never sees it.
+    private static let responsiblePidFn: (@convention(c) (pid_t) -> pid_t)? = {
+        guard let sym = dlsym(UnsafeMutableRawPointer(bitPattern: -2),
+                              "responsibility_get_pid_responsible_for_pid")
+        else { return nil }
+        return unsafeBitCast(sym, to: (@convention(c) (pid_t) -> pid_t).self)
+    }()
+
+    /// The frontmost app's PID plus every helper process belonging to it.
+    private func frontAppPIDs() -> Set<pid_t> {
+        guard let front = NSWorkspace.shared.frontmostApplication?.processIdentifier
+        else { return [] }
+
+        var result: Set<pid_t> = [front]
+        let procs = Self.allProcesses()
+
+        // Descendants: children, grandchildren, ...
+        var childrenOf: [pid_t: [pid_t]] = [:]
+        for p in procs { childrenOf[p.ppid, default: []].append(p.pid) }
+        var queue = [front]
+        while let next = queue.popLast() {
+            for child in childrenOf[next] ?? [] where !result.contains(child) {
+                result.insert(child)
+                queue.append(child)
+            }
+        }
+
+        // Reparented helpers (Safari's WebContent) link back via responsible pid.
+        if let fn = Self.responsiblePidFn {
+            for p in procs where !result.contains(p.pid) {
+                if fn(p.pid) == front { result.insert(p.pid) }
+            }
+        }
+        return result
+    }
+
+    private static func allProcesses() -> [(pid: pid_t, ppid: pid_t)] {
+        var name: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0]
+        var size = 0
+        guard sysctl(&name, 4, nil, &size, nil, 0) == 0, size > 0 else { return [] }
+
+        let stride = MemoryLayout<kinfo_proc>.stride
+        var procs = [kinfo_proc](repeating: kinfo_proc(), count: size / stride)
+        guard sysctl(&name, 4, &procs, &size, nil, 0) == 0 else { return [] }
+
+        return procs.prefix(size / stride).map {
+            ($0.kp_proc.p_pid, $0.kp_eproc.e_ppid)
+        }
     }
 
     // MARK: - Per-process assertion check
 
-    // IOPMCopyAssertionsByType is in IOKit but isn't bridged into Swift's module
-    // overlay, so we load it at runtime via dlopen/dlsym.
-    private typealias AssertionsByTypeFn =
-        @convention(c) (CFString, UnsafeMutablePointer<Unmanaged<CFDictionary>?>) -> IOReturn
-
-    private static let assertionsByTypeFn: AssertionsByTypeFn? = {
-        let lib = dlopen("/System/Library/Frameworks/IOKit.framework/IOKit", RTLD_LAZY)
-        guard let sym = dlsym(lib, "IOPMCopyAssertionsByType") else { return nil }
-        return unsafeBitCast(sym, to: AssertionsByTypeFn.self)
-    }()
-
     /// Checks whether the frontmost app's PID is holding a display-sleep assertion.
-    /// Falls back to the aggregate check if the symbol isn't available.
-    private func frontAppHoldsDisplayAssertion() -> Bool {
-        guard let frontPID = NSWorkspace.shared.frontmostApplication?.processIdentifier
+    ///
+    /// Uses `IOPMCopyAssertionsByProcess`, which groups assertions by owning PID
+    /// and is declared in IOKit's public headers. (Its sibling
+    /// `IOPMCopyAssertionsByType` is exported but declared nowhere public, so it
+    /// is private API — this asks the same question through the documented door.)
+    private func holdsDisplayAssertion(_ pids: Set<pid_t>) -> Bool {
+        var raw: Unmanaged<CFDictionary>?
+        guard IOPMCopyAssertionsByProcess(&raw) == kIOReturnSuccess,
+              let byPID = raw?.takeRetainedValue() as? [Int: [[String: Any]]]
         else { return false }
 
-        guard let fn = Self.assertionsByTypeFn else {
-            // Symbol unavailable — fall back to aggregate (less accurate)
-            return hasAggregateDisplayAssertion()
-        }
-
-        let types: [CFString] = [
-            kIOPMAssertionTypePreventUserIdleDisplaySleep as CFString,
-            kIOPMAssertionTypeNoDisplaySleep as CFString
+        // NoDisplaySleepAssertion is the legacy spelling; both appear in the
+        // wild, so match either.
+        let displayTypes: Set<String> = [
+            kIOPMAssertionTypePreventUserIdleDisplaySleep as String,
+            kIOPMAssertionTypeNoDisplaySleep as String
         ]
 
-        for assertionType in types {
-            var raw: Unmanaged<CFDictionary>?
-            guard fn(assertionType, &raw) == kIOReturnSuccess,
-                  let dict = raw?.takeRetainedValue() as? [String: [[String: Any]]],
-                  let list = dict[assertionType as String] else { continue }
-
-            let match = list.contains { info in
-                (info["AssertionPID"] as? Int).map { pid_t($0) == frontPID } ?? false
+        for (pid, assertions) in byPID where pids.contains(pid_t(pid)) {
+            let hit = assertions.contains { assertion in
+                guard let type = assertion[kIOPMAssertionTypeKey as String] as? String,
+                      displayTypes.contains(type) else { return false }
+                // An assertion can be registered but currently off (level 0).
+                if let level = assertion[kIOPMAssertionLevelKey as String] as? Int {
+                    return level > 0
+                }
+                return true
             }
-            if match { return true }
-        }
-        return false
-    }
-
-    /// Aggregate fallback: any process holds a display-sleep assertion.
-    private func hasAggregateDisplayAssertion() -> Bool {
-        var raw: Unmanaged<CFDictionary>?
-        guard IOPMCopyAssertionsStatus(&raw) == kIOReturnSuccess,
-              let dict = raw?.takeRetainedValue() as? [String: Any] else { return false }
-        for key in [kIOPMAssertionTypePreventUserIdleDisplaySleep as String,
-                    kIOPMAssertionTypeNoDisplaySleep as String] {
-            if let v = dict[key] as? Int, v > 0 { return true }
+            if hit { return true }
         }
         return false
     }
@@ -92,11 +132,15 @@ final class VideoDetector {
 
     /// True when the frontmost app is actively playing audio.
     ///
-    /// Uses the public CoreAudio process-object API (macOS 14.2+); the app
-    /// target deploys to macOS 26, so no availability guard is needed.
-    private func frontAppIsOutputtingAudio() -> Bool {
-        guard let frontPID = NSWorkspace.shared.frontmostApplication?.processIdentifier
-        else { return false }
+    /// Uses the public CoreAudio process-object API introduced in macOS 14.2
+    /// (`kAudioHardwarePropertyProcessObjectList`, `kAudioProcessPropertyPID`,
+    /// `kAudioProcessPropertyIsRunningOutput`). The selectors are plain
+    /// FourCharCode constants, so they compile at any deployment target, but on
+    /// releases older than 14.2 the queries don't return meaningful data — the
+    /// `#available` guard makes that requirement explicit and keeps the video
+    /// heuristic from silently misbehaving if the deployment target is ever lowered.
+    private func isOutputtingAudio(_ pids: Set<pid_t>) -> Bool {
+        guard #available(macOS 14.2, *) else { return false }
 
         var listAddr = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyProcessObjectList,
@@ -115,8 +159,9 @@ final class VideoDetector {
             AudioObjectID(kAudioObjectSystemObject), &listAddr, 0, nil, &size, &objects
         ) == noErr else { return false }
 
-        for object in objects where processID(of: object) == frontPID {
-            return isRunningOutput(object)
+        for object in objects {
+            guard let pid = processID(of: object), pids.contains(pid) else { continue }
+            if isRunningOutput(object) { return true }
         }
         return false
     }

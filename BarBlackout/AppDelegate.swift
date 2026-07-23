@@ -199,7 +199,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupMenu() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        guard let btn = statusItem.button else { return }
+        // No button means no status item to draw into — nothing else to set up.
+        guard statusItem.button != nil else { return }
         startWatchingProgress()
 
         let mgr = MenuBarManager.shared
