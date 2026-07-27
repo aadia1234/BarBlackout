@@ -69,7 +69,9 @@ struct DurationView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     DurationView()
         .environmentObject(MenuBarManager.preview)
 }
+#endif

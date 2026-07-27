@@ -97,7 +97,9 @@ struct AccentSlider: NSViewRepresentable {
     }
 }
 
+#if DEBUG
 #Preview {
     CustomDurationView(width: 310)
         .environmentObject(MenuBarManager.preview)
 }
+#endif

@@ -166,8 +166,10 @@ final class AccentSwitch: NSSwitch {
         )
     }
 }
+#if DEBUG
 #Preview {
     SettingsView(width: 310)
         .environmentObject(MenuBarManager.preview)
 }
+#endif
 
